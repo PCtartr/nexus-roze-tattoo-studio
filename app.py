@@ -9,7 +9,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, execute_read_query, execute_write_query
+from helpers import apology, login_required, execute_read_query, execute_write_query, format_phone_number
 
 # Configure application
 app = Flask(__name__)
@@ -174,6 +174,8 @@ def register():
         elif request.form.get("password") != request.form.get("confirmation"):
             return apology("Password does not match confirmation", 400)
 
+        phone_number = format_phone_number(request.form.get("phone_number"))
+
         # search for used username
         rows = execute_read_query("SELECT * FROM users WHERE username = ?", (request.form.get("username"),))
 
@@ -182,14 +184,14 @@ def register():
             return apology("Username taken", 400)
 
         if request.form.get("artist") == "on":
-            return render_template("artist_register.html", username=request.form.get("username"), phone_number=request.form.get("phone_number"), password=request.form.get("password"))
+            return render_template("artist_register.html", username=request.form.get("username"), phone_number=phone_number, password=request.form.get("password"))
 
         # register new user
         # Wrap the variables in a tuple: (username, password_hash, phone_number)
         # Wrap the three values inside ONE pair of parentheses to make a single tuple
         # RIGHT: The SQL string is arg 1, the TUPLE of data is arg 2
         execute_write_query("INSERT INTO users (username, hash, phone_number, artist) VALUES (?, ?, ?, ?)", 
-            (request.form.get("username"), generate_password_hash(request.form.get("password")), request.form.get("phone_number"), request.form.get("artist") == "on")
+            (request.form.get("username"), generate_password_hash(request.form.get("password")), phone_number, request.form.get("artist") == "on")
         )
 
         # pull new user info
@@ -353,3 +355,4 @@ if __name__ == "__main__":
     # Access the variable Render already provides
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
+
