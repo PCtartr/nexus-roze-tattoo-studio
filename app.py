@@ -14,6 +14,11 @@ from helpers import apology, login_required, execute_read_query, execute_write_q
 # Configure application
 app = Flask(__name__)
 
+if __name__ == "__main__":
+    # Access the variable Render already provides
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
+
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -346,4 +351,5 @@ def delete_account_from_search():
         # Clear session and redirect to homepage
         return redirect("/account")
     else:
+
         return redirect("/account")
