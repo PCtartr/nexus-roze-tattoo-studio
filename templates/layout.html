@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.3/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        
+        <!-- https://favicon.io/emoji-favicons/money-bag/ -->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <title>Nexus Roze: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <nav class="bg-dark border-dark navbar navbar-expand-md navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><span class="red">Nexus Roze</span></a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav me-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/pricing">Pricing</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/booking">Booking</a></li>
+                        </ul>
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/account">My Account</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main class="container py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+            </script>
+        <p class="mb-4"></p>
+        <footer class="bg-dark border-dark text-light py-4 text-center">
+            <footer>Contact Information</footer>
+            <footer>Phone: <a style="text-decoration: none;" href="https://www.google.com/search?q=nexus+roze+tattoo+studio+cameron+road+suite+204+austin+tx&sca_esv=99ae616f7fa66d58&sxsrf=ANbL-n4mC3T_Dg6npnXPkYp8jGGsOOjlaw%3A1772586525655&source=hp&ei=HYanaYn8JYysqtsPgem0oAs&iflsig=AFdpzrgAAAAAaaeULR03AMdM8_jKeb73yK3JH2_Wv5Xk&gs_ssp=eJwFwcENwyAMAED1W6k7-JN3nAjFkBG6hQNOxKO4BVOhTt-7-2O-5mX5lOtbw3vgbZ9w-M25GIiE6EB_0o7jDJH8lpI4OZC9PEOR0RtU_QkYm6lCs56yQuSXVC1QlRO0nk1gRQfcm-UCNv7jeyVT&oq=nexus&gs_lp=Egdnd3Mtd2l6IgVuZXh1cyoCCAAyDRAuGMcBGK8BGI4FGCcyCBAAGIAEGLEDMggQABiABBixAzILEC4YrwEYxwEYgAQyCxAuGIAEGMcBGK8BMggQABiABBixAzIIEAAYgAQYsQMyCBAAGIAEGLEDMg4QLhiABBixAxjHARivATIFEAAYgARI5hdQAFiTB3AAeACQAQCYAT2gAZQCqgEBNbgBAcgBAPgBAZgCBaACowLCAgQQIxgnwgIKECMYgAQYigUYJ8ICCxAAGIAEGLEDGIMBwgIIEC4YgAQYsQPCAgsQLhiABBixAxiDAcICChAjGMkCGPAFGCfCAg4QLhiABBiKBRixAxiDAcICDhAAGIAEGIoFGLEDGIMBwgIOEC4YgAQYsQMYxwEY0QPCAg4QLhiABBjHARivARiOBZgDAJIHATWgB_ZSsgcBNbgHowLCBwUwLjQuMcgHCoAIAQ&sclient=gws-wiz#">(512)534-8411</a></footer>
+            <footer>Email: nexusroze@gmail.com</footer>
+            <a href="https://maps.app.goo.gl/nhrpXAM1FSgS815H8">View on Google Maps</a>
+        </footer>
+
+    </body>
+
+</html>

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete Account
+{% endblock %}
+
+{% block main %}
+    <h1>Delete Account</h1>
+    <p>Are you sure you want to delete your account? This action is irreversible.</p>
+    <form action="/delete_account_confirmed" method="post">
+        <input type="hidden" name="username" value="{{ username }}">
+        <button class="btn btn-danger" type="submit">Confirm Delete Account</button>
+    </form>
+    <p class="mb-4"></p>
+    <p class="mb-4">Or...</p>
+    <h1>Delete another account?</h1>
+    <form action="/delete_another_account" method="post">
+        <div class="mb-3">
+            <button class="btn btn-danger" type="submit">Delete Another Account</button>
+        </div>
+{% endblock %}

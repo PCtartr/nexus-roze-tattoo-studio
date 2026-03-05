@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete Another Account
+{% endblock %}
+
+{% block main %}
+    <h1>Account List</h1>
+    <p>Click the delete button next to any account you want to remove.</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Phone Number</th>
+                <th>Artist</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(users|length) %}
+                <tr>
+                    <td>{{ users[i].username }}</td>
+                    <td>{{ users[i].phone_number }}</td>
+                    <td>{{ 'Yes' if users[i].artist == True else 'No' }}</td>
+                    {% if users[i].username != username %}
+                        <form action="/delete_account_from_search" method="post">
+                            <input type="hidden" name="username" value="{{ users[i].username }}">
+                            <td><button class="btn btn-danger" type="submit">Delete Account</button></td>
+                        </form>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Artist Register
+{% endblock %}
+
+{% block main %}
+    <h1>Artist Registration</h1>
+    <h2>Welcome, {{ username }}! You must be confirmed as an artist.</h2>
+    <p>Please allow an administrator to confirm your artist status</p>
+    <form action="/artist_register" method="post">
+        <!-- carry registration fields through to the admin confirmation POST -->
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="hidden" name="phone_number" value="{{ phone_number }}">
+        <input type="hidden" name="password" value="{{ password }}">
+        <input type="hidden" name="artist" value="on">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" type="text" name="admin_username" placeholder="admin username">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" type="password" name="admin_password" placeholder="admin password">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

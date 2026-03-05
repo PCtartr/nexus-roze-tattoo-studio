@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <h1>Register</h1>
+    <p>Please fill out the form below to create an account.</p>
+    <form action="{{ url_for('register') }}" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="phone_number" placeholder="Phone Number" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirm Password" type="password">
+        </div>
+        <div class="form-check form-check-reverse mb-3 d-flex justify-content-center align-items-center">
+            <label class="form-check-label me-2" for="artistCheck">
+                Are you a tattoo artist?
+            </label>
+            <input class="form-check-input" type="checkbox" name="artist" id="artistCheck">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Booking
+{% endblock %}
+
+{% block main %}
+    <h1>Book a Tattoo</h1>
+    <p>Please fill out the form below to book a tattoo.</p>
+    <form action="/booking" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="tattoo_description" placeholder="Tattoo Description" type="text">
+        </div>
+        <div class="mb-3">
+            <input type="datetime-local" class="form-control mx-auto w-auto" name="scheduled_date" id="exampleDateInput">
+        </div>
+        <button class="btn btn-primary" type="submit">Book Tattoo</button>
+        <p class="mt-3">Note: All bookings are subject to availability. We will contact you to confirm your appointment. If you need to cancel or reschedule, please contact us at least 24 hours in advance.</p>
+    </form>
+{% endblock %}

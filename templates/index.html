@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Nexus Roze Tattoo Studio
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <img src="{{ url_for('static', filename='nexusroze.jpg') }}" alt="Nexus Roze Tattoo Studio" class="img-fluid rounded mb-4">
+        <p>
+            At Nexus Roze Tattoo Studio, art and identity connect. We’re more than a tattoo studio — 
+            we’re a creative space where bold ideas, personal stories, and powerful designs come together.
+        </p>
+        <p>
+            Whether you're looking for your first piece or adding to your collection, our artists specialize 
+            in custom tattoos crafted with precision, passion, and purpose. We maintain a clean, safe, 
+            and welcoming environment where every client feels comfortable and confident.
+        </p>
+        <p>
+            From detailed fine-line work to large-scale statement pieces, Nexus Roze is where your vision 
+            becomes permanent art.
+        </p>
+        <div class="tagline">
+            Your Story. Your Style. Your Ink.
+        </div>
+
+
+{% endblock %}

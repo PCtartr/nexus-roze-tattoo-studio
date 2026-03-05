@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete Another Account
+{% endblock %}
+
+{% block main %}
+    <h1>Delete Another Account</h1>
+    <h2>YOU ARE ABOUT TO DELETE ANOTHER ACCOUNT!</h2>
+    <p>Please allow an administrator to confirm account deletion.</p>
+    <form action="/delete_another_account_search" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" type="text" name="admin_username" placeholder="admin username">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" type="password" name="admin_password" placeholder="admin password">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

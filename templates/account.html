@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+    <h1>My Account Information</h1>
+    <table class = "table table-bordered table-striped">
+        <thead class = "thead-light">
+            <tr>
+                <th>Username</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{% if artist == True %}<span class="badge bg-danger">Artist</span> {% endif %}{{ username }}</td>
+                <td>{{ phone_number }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if artist == False %}
+    <h2>Scheduled tattoos</h2>
+    <table class = "table table-bordered table-striped">
+        <thead class = "thead-dark">
+            <tr>
+                <th>Date Created</th>
+                <th>Tattoo description</th>
+                <th>Date scheduled</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(timestamps|length) %}
+            <tr>
+                <td>{{ timestamps[i] }}</td>
+                <td>{{ descriptions[i] }}</td>
+                <td>{{ scheduled_dates[i] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+            {% if artist == True %}
+    <h2>Scheduled tattoos for clients</h2>
+            <table class = "table table-bordered table-striped">
+                <thead class = "thead-dark">
+                    <tr>
+                        <th>Client name</th>
+                        <th>Client phone number</th>
+                        <th>Date Created</th>
+                        <th>Tattoo description</th>
+                        <th>Date scheduled</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(artist_timestamps|length) %}
+                    <tr>
+                        <td>{{ artist_client_names[i] }}</td>
+                        <td>{{ artist_client_phone_numbers[i] }}</td>
+                        <td>{{ artist_timestamps[i] }}</td>
+                        <td>{{ artist_descriptions[i] }}</td>
+                        <td>{{ artist_scheduled_dates[i] }}</td>
+                        <form action="/delete_appointment" method="post">
+                            <input type="hidden" name="tattoo_description" value="{{ artist_descriptions[i] }}">
+                            <input type="hidden" name="client_id" value="{{ artist_client_ids[i] }}">
+                            <td><button class="btn btn-danger" type="submit">Delete</button></td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </tbody>
+    </table>
+    <p class="mb-4"></p>
+    <form action="/delete_account" method="post">
+        <input type="hidden" name="username" value="{{ username }}">
+        <button class="btn btn-danger" type="submit">Delete Account</button>
+    </form>
+{% endblock %}
