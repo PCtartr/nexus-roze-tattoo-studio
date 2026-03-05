@@ -15,7 +15,6 @@ from helpers import (
     execute_read_query,
     execute_write_query,
     format_phone_number,
-    send_sms,
 )
 
 # Configure application
@@ -227,23 +226,6 @@ def booking():
             (session["user_id"], timestamp, tattoo_description, scheduled_date)
         )
 
-                # notify artists by SMS about the new booking
-        try:
-            artists = execute_read_query("SELECT phone_number FROM users WHERE artist = 1")
-            # build a short notification message
-            notif = (
-                f"New appointment scheduled:\n"
-                f"Client ID: {session['user_id']}\n"
-                f"Description: {tattoo_description}\n"
-                f"Date: {scheduled_date}"
-            )
-            for row in artists:
-                # send_sms expects a properly formatted number; send as stored
-                send_sms(row["phone_number"], notif)
-        except Exception as e:
-            # log the error; don't prevent the user from booking
-            app.logger.error(f"failed to send notification to artists: {e}")
-        
         return redirect("/account")
 
     else:
@@ -379,5 +361,6 @@ if __name__ == "__main__":
     # Access the variable Render already provides
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
+
 
 
