@@ -74,5 +74,21 @@ def execute_write_query(query, params=None):
             cursor.execute(query)
         conn.commit()
 
+def format_phone_number(phone):
+    """Format phone number to (123) 456-7890 format."""
+    # Remove non-digit characters
+    digits = ''.join(c for c in phone if c.isdigit())
+    # Limit to 10 digits
+    digits = digits[:10]
+    # Format
+    if len(digits) == 10:
+        return f"({digits[:3]}) {digits[3:6]}-{digits[6:]}"
+    else:
+        # If not 10 digits, return as is or handle differently
+        return phone
+
+
+
+
 
 
